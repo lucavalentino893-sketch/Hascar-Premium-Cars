@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="HASCAR Premium Cars. Selección exclusiva de vehículos.">
+<title>HASCAR | Premium Cars</title>
+<style>
+:root{--bg:#080808;--panel:#111;--white:#f5f5f5;--muted:#999;--line:#292929;--accent:#c9c9c9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}
+header{height:82px;display:flex;align-items:center;justify-content:space-between;padding:0 7%;border-bottom:1px solid #ffffff14;background:#080808ed;position:sticky;top:0;z-index:20;backdrop-filter:blur(14px)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:3px;font-size:24px}.brand-mark{width:42px;height:27px;display:inline-block;position:relative}.brand-mark:before,.brand-mark:after{content:"";position:absolute;top:2px;width:18px;height:19px;background:#fff;clip-path:polygon(0 0,100% 0,70% 100%,40% 100%)}.brand-mark:before{left:0;transform:skew(15deg)}.brand-mark:after{right:0;transform:scaleX(-1) skew(15deg)}.brand-mark i{position:absolute;left:16px;top:2px;width:10px;height:25px;background:white;clip-path:polygon(0 0,100% 0,75% 100%,25% 100%)}
+nav{display:flex;gap:30px;color:#ddd;font-size:12px;letter-spacing:1.5px;text-transform:uppercase}nav a:hover{color:#fff}
+.menu{display:none;background:none;border:0;color:white;font-size:25px}
+.hero{min-height:690px;display:flex;align-items:center;padding:90px 9%;position:relative;overflow:hidden;background:linear-gradient(90deg,#050505 0%,#050505dc 42%,#05050520 100%),url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2200&q=90') center/cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#080808 0%,transparent 30%,transparent 80%,#08080850);pointer-events:none}.hero-content{max-width:620px;position:relative;z-index:1;animation:rise .9s ease both}.eyebrow{font-size:11px;letter-spacing:4px;color:#bbb;text-transform:uppercase}.hero h1{font-size:clamp(48px,7vw,88px);line-height:.98;letter-spacing:-3px;margin:22px 0}.hero p{color:#ccc;line-height:1.8;max-width:460px;font-size:15px}.actions{display:flex;gap:13px;margin-top:34px;flex-wrap:wrap}.btn{padding:15px 23px;border:1px solid #eee;background:#f3f3f3;color:#080808;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:.25s}.btn:hover{background:transparent;color:white}.btn.outline{background:transparent;color:white}.btn.outline:hover{background:white;color:#080808}
+section{padding:95px 8%}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:36px}.section-head h2{font-size:clamp(30px,4vw,48px);letter-spacing:-1.5px;margin:12px 0 0}.section-head p{color:var(--muted);font-size:13px;line-height:1.7;max-width:380px}
+.inventory{background:#0d0d0d}.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}.filters button{background:transparent;border:1px solid var(--line);color:#bbb;padding:10px 15px;font-size:11px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}.filters button.active,.filters button:hover{background:#eee;color:#111;border-color:#eee}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.car{background:#131313;border:1px solid #242424;transition:transform .3s,border-color .3s;overflow:hidden}.car:hover{transform:translateY(-6px);border-color:#666}.car img{width:100%;height:220px;object-fit:cover;display:block;filter:saturate(.78)}.car-body{padding:22px}.car-top{display:flex;justify-content:space-between;gap:10px;color:#999;font-size:10px;letter-spacing:1.5px;text-transform:uppercase}.car h3{font-size:20px;margin:12px 0 8px}.specs{color:#999;font-size:12px;display:flex;gap:13px;flex-wrap:wrap}.price{font-size:17px;margin:19px 0;color:#fff}.car .btn{width:100%;text-align:center;display:block}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}.about-image{min-height:420px;background:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=85') center/cover}.about-copy p{color:#aaa;line-height:1.9;font-size:14px}.stats{display:flex;gap:35px;margin-top:30px}.stat strong{font-size:30px;display:block}.stat span{font-size:10px;color:#888;letter-spacing:1.5px;text-transform:uppercase}
+.contact{background:#0d0d0d}.contact-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px}.contact-info p{color:#aaa;line-height:1.8;font-size:14px}.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.contact-form input,.contact-form textarea,.admin-form input,.admin-form select{width:100%;background:#141414;border:1px solid #333;color:#fff;padding:15px;outline:none}.contact-form input:focus,.contact-form textarea:focus{border-color:#aaa}.contact-form textarea{grid-column:1/-1;min-height:130px;resize:vertical}.contact-form button{grid-column:1/-1;justify-self:start}
+footer{padding:35px 8%;border-top:1px solid #222;display:flex;justify-content:space-between;gap:20px;color:#777;font-size:11px;letter-spacing:1px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}.reveal.visible{opacity:1;transform:none}
+.discord{position:fixed;right:24px;bottom:24px;z-index:30;background:#f5f5f5;color:#080808;border-radius:50px;padding:15px 19px;font-size:11px;font-weight:bold;letter-spacing:1px;box-shadow:0 8px 30px #0008}
+.admin-open{position:fixed;left:18px;bottom:18px;background:#171717;color:#aaa;border:1px solid #333;padding:9px 12px;font-size:10px;z-index:25;cursor:pointer}
+.modal{display:none;position:fixed;inset:0;background:#000d;z-index:50;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-box{width:min(650px,100%);max-height:90vh;overflow:auto;background:#101010;border:1px solid #444;padding:28px}.modal-head{display:flex;justify-content:space-between;align-items:center}.close{background:none;border:0;color:white;font-size:24px;cursor:pointer}.admin-form{display:grid;gap:12px;margin-top:20px}.admin-form label{font-size:11px;color:#aaa;letter-spacing:1px;text-transform:uppercase}.admin-form input,.admin-form select{margin-top:7px}.admin-list{margin-top:20px}.admin-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #333;font-size:13px}.delete{background:transparent;border:1px solid #733;color:#f99;padding:6px 10px;cursor:pointer}.notice{font-size:12px;color:#aaa;line-height:1.6;margin-top:12px}
+@keyframes rise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
+@media(max-width:850px){nav{display:none;position:absolute;top:81px;left:0;right:0;background:#090909;padding:25px 8%;flex-direction:column}.menu{display:block}nav.open{display:flex}.grid{grid-template-columns:repeat(2,1fr)}.about,.contact-wrap{grid-template-columns:1fr}.about-image{min-height:300px}}
+@media(max-width:560px){header{padding:0 5%;height:70px}.brand{font-size:20px}.hero{min-height:620px;padding:70px 7%}.hero h1{letter-spacing:-2px}.section-head{display:block}.grid{grid-template-columns:1fr}section{padding:70px 6%}.contact-form{grid-template-columns:1fr}.contact-form textarea,.contact-form button{grid-column:1}.stats{gap:20px}footer{flex-direction:column}.discord{right:12px;bottom:12px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#inicio" aria-label="HASCAR inicio"><span class="brand-mark"><i></i></span>HASCAR</a>
+  <button class="menu" id="menu" aria-label="Abrir menú">☰</button>
+  <nav id="nav"><a href="#inicio">Inicio</a><a href="#vehiculos">Vehículos</a><a href="#empresa">La empresa</a><a href="#contacto">Contacto</a></nav>
+</header>
+<main>
+<section class="hero" id="inicio">
+ <div class="hero-content"><div class="eyebrow">Premium Automotive · Selección exclusiva</div><h1>EXCELENCIA<br>EN CADA<br>DETALLE.</h1><p>Una selección de Vehículos elegidos por su diseño, calidad y carácter. Descubrí una nueva forma de vivir la experiencia automotriz.</p><div class="actions"><a class="btn" href="#vehiculos">Explorar vehículos</a><a class="btn outline" href="#contacto">Contactanos</a></div></div>
+</section>
+<section class="inventory" id="vehiculos">
+ <div class="section-head reveal"><div><div class="eyebrow">Colección HASCAR</div><h2>Vehículos destacados</h2></div><p>Conocé nuestra selección de Superdeportivos, Deportivos, SUV, sedanes y Pickups. Las unidades se presentan como usadas o 0 km a modo de catálogo inicial.</p></div>
+ <div class="filters reveal"><button class="active" data-filter="Todos">Todos</button><button data-filter="SUV">SUV</button><button data-filter="Deportivo">Deportivos</button><button data-filter="Sedán">Sedanes</button><button data-filter="Pickup">Pickups</button></div>
+ <div class="grid" id="cars"></div>
+</section>
+<section class="about" id="empresa">
+ <div class="about-image reveal" role="img" aria-label="Automóvil premium"></div>
+ <div class="about-copy reveal"><div class="eyebrow">Quiénes somos</div><h2 style="font-size:clamp(32px,4vw,48px);letter-spacing:-1.5px">Una experiencia<br>que va más allá.</h2><p>En HASCAR, entendemos que elegir un vehículo es una decisión importante. Por eso, buscamos ofrecer una experiencia cuidada, transparente y personalizada, con una selección de automóviles que se destacan por su calidad y personalidad.</p><p>Este espacio está preparado para presentar el stock, recibir consultas y acompañar a cada cliente durante su búsqueda.</p><div class="stats"><div class="stat"><strong>1</strong><span>Atención personalizada</span></div><div class="stat"><strong>100%</strong><span>Pasión automotriz</span></div></div></div>
+</section>
+<section class="contact" id="contacto">
+ <div class="section-head reveal"><div><div class="eyebrow">Estamos para ayudarte</div><h2>Hablemos de tu<br>próximo vehículo.</h2></div></div>
+ <div class="contact-wrap">
+  <p>Completá el formulario y comunicate con nuestro equipo a través de Discord. También podés ingresar directamente desde el acceso rápido.</p>
+  <button class="btn" type="submit">Contactar por Discord</button>
+ </div>
+</section>
+</main>
+<footer><span class="brand"><span class="brand-mark"><i></i></span>HASCAR</span><span>PREMIUM AUTOMOTIVE · BUENOS AIRES, ARGENTINA</span><span>© <span id="year"></span> HASCAR. Todos los derechos reservados.</span></footer>
+<a class="discord" id="discordFloat" href="https://discord.gg/gQUT9N8fd" target="_blank" rel="noopener">DISCORD ↗</a>
+<button class="admin-open" id="adminOpen">PANEL ADMIN</button>
+<div class="modal" id="adminModal"><div class="modal-box"><div class="modal-head"><div><div class="eyebrow">Gestión del inventario</div><h2>Panel de administración</h2></div><button class="close" id="closeAdmin">×</button></div>
+<div id="loginArea"><p></p><form class="admin-form" id="loginForm"><label>Contraseña<input type="password" id="adminPassword" required></label><button class="btn">Ingresar</button></form></div>
+<div id="adminArea" style="display:none"><p class="notice">Agregá unidades al catálogo de esta demostración. Los cambios quedan guardados en este navegador.</p><form class="admin-form" id="carForm">
+<label>Marca y modelo<input name="name" placeholder="Ej. Porsche 911 Carrera" required></label>
+<label>Categoría<select name="category"><option>SUV</option><option>Deportivo</option><option>Sedán</option><option>Pickup</option></select></label>
+<label>Estado<select name="condition"><option>Usado</option><option>0 km</option></select></label>\n<label>Año y kilometraje<input name="specs" placeholder="2023 · 12.000 km o 0 km" required></label>
+<label>Precio<input name="price" placeholder="USD 85.000" required></label>
+<label>URL de imagen<input name="image" type="url" placeholder="https://..." required></label>
+<button class="btn">Agregar vehículo</button></form><div class="admin-list" id="adminList"></div><button class="btn outline" id="logout" style="margin-top:20px">Cerrar sesión</button></div>
+</div></div>
+<script>
+const DISCORD_INVITE = "https://discord.gg/gQUT9N8fd";
+const ADMIN_PASSWORD = "Bianchi2000Palermo"; // SOLO DEMOSTRACIÓN: no usar así en una web publicada.
+const initialCars = [
+ {id:1,name:'Porsche 911 Carrera',category:'Deportivo',specs:'2023 · 8.500 km',condition:'Usado',price:'Consultar precio',image:'https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXuBuNXdMGF4tl3U0%25z8rMHIspMBvMZq6G5OtgSv31nBJaA4qh4NSEGewirQ91wRmWBi2OZ7gVdc0BtUlhDfzE0spAnPdjEiZJyNydlctBvov1yf8dXFt4yPED6uViRmWBizxH7gVdcbWtUlhDf998spAnPeW0iZJyNzsnctBvoqB4f8dXF4mKPE3pUWFYRpwY4EJMNTdko6c09ItDVW8uVO'},
+ {id:2,name:'Mercedes-Benz GLE',category:'SUV',specs:'2022 · 21.000 km',condition:'Usado',price:'Consultar precio',image:'https://cdn.jdpower.com/JDP_2024%20Mercedes-Benz%20GLE%20Silver%20Front%20Quarter%20View%20European%20Model.jpg'},
+ {id:3,name:'BMW 330i',category:'Sedán',specs:'2023 · 14.000 km',condition:'Usado',price:'Consultar precio',image:'https://4kwallpapers.com/images/wallpapers/bmw-330i-m-sport-2022-5k-1920x1080-8038.jpeg'},
+ {id:4,name:'BMW M5 Competition',category:'Sedán',specs:'2025 · 0 km',condition:'0 km',price:'Consultar precio',image:'https://wallpapercave.com/wp/wp6847689.jpg'},
+ {id:5,name:'Ferrari SF90 Stradale',category:'Deportivo',specs:'2024 · 3.200 km',condition:'Usado',price:'Consultar precio',image:'https://tse2.mm.bing.net/th/id/OIP.CLUyXCom68nivpebw3qs-QHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'},
+ {id:6,name:'Porsche 911 Turbo S',category:'Deportivo',specs:'2025 · 0 km',condition:'0 km',price:'Consultar precio',image:'https://static.motor.es/fotos-noticias/2024/07/volvo-2024103056-1720120125_1.jpg'},
+ {id:7,name:'Audi R8 V10 Cabrio',category:'Deportivo',specs:'2021 · 12.000 km',condition:'Usado',price:'Consultar precio',image:'https://tse4.mm.bing.net/th/id/OIP.Bt67wYmImAUdTgR85qNgiAHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'},
+ {id:8,name:'Porsche Panamera',category:'Sedán',specs:'2025 · 0 km',condition:'0 km',price:'Consultar precio',image:'https://media.ed.edmunds-media.com/porsche/panamera/2025/oem/2025_porsche_panamera_sedan_4_fq_oem_1_815.jpg'},
+ {id:9,name:'Audi Q8',category:'SUV',specs:'2024 · 0 km',condition:'0 km',price:'Consultar precio',image:'https://hips.hearstapps.com/hmg-prod/images/audi-sq8-2024-1-64f70eb909755.jpg?crop=0.811xw:0.607xh;0.0830xw,0.179xh&resize=980:*'},
+ {id:10,name:'Audi A5',category:'Sedán',specs:'2022 · 26.000 km',condition:'Usado',price:'Consultar precio',image:'https://motorpacificoaudi.com/wp-content/uploads/2024/10/comprar-Audi-A5-nuevo.jpg'},
+ {id:11,name:'Jeep Wrangler',category:'SUV',specs:'2023 · 18.000 km',condition:'Usado',price:'Consultar precio',image:'https://www.jeep.com/content/dam/cross-regional/global/jeep/2023/wrangler/exterior/desktop/MY23-Wrangler-Exterior-Main-Hero-Desktop.jpg.img.1440.jpg'},
+ {id:12,name:'RAM 1500',category:'Pickup',specs:'2025 · 0 km',condition:'0 km',price:'Consultar precio',image:'https://acroadtrip.blob.core.windows.net/catalogo-imagenes/l/RT_V_09791103910841ddb017ddc7ecd73d1e.webp'},
+ {id:13,name:'Ford F-150',category:'Pickup',specs:'2022 · 35.000 km',condition:'Usado',price:'Consultar precio',image:'https://acroadtrip.blob.core.windows.net/catalogo-imagenes/l/RT_V_c0403804a1054bf5964f31dccff67a10.jpg'},
+ {id:14,name:'Ford F-150 Raptor',category:'Pickup',specs:'2024 · 0 km',condition:'0 km',price:'Consultar precio',image:'https://p.turbosquid.com/ts-thumb/U6/g7KesX/AU/2024_ford_f150_raptor_0000/jpg/1716485017/1920x1200/fit_q99/9ede7a215d16f3f9f12dfc44a48752db5fae10af/2024_ford_f150_raptor_0000.jpg'},
+ {id:15,name:'Ford Maverick',category:'Pickup',specs:'2023 · 22.000 km',condition:'Usado',price:'Consultar precio',image:'https://www.ford.ca/is/image/content/dam/vdm_ford/live/en_ca/ford/nameplate/maverick/2023/collections/dm/22_frd_mvk_xlt_dr34.tif?croppathe=1_3x2&wid=1440'},
+ {id:16,name:'Toyota SW4',category:'SUV',specs:'2025 · 0 km',condition:'0 km',price:'Consultar precio',image:'https://tse4.mm.bing.net/th/id/OIP.9hc2dPUjqYR6VCQCKtbUCAHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3'},
+ {id:17,name:'Lynk & Co 06',category:'SUV',specs:'2024 · 9.000 km',condition:'Usado',price:'Consultar precio',image:'https://www.arabsauto.com/wp-content/uploads/2023/10/2024-Lynk-Co-06-EM-P-%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA-ArabsAuto-6.jpg'}
+];
+let cars = JSON.parse(localStorage.getItem("hascarCars") || "null") || initialCars;
+const save=()=>localStorage.setItem("hascarCars",JSON.stringify(cars));
+function discord(){return DISCORD_INVITE;}
+document.getElementById("discordFloat").href=discord();
+function render(filter="Todos"){
+ const list=filter==="Todos"?cars:cars.filter(c=>c.category===filter);
+ document.getElementById("cars").innerHTML=list.length?list.map(c=>`<article class="car"><img src="${escapeHTML(c.image)}" alt="${escapeHTML(c.name)}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80'"><div class="car-body"><div class="car-top"><span>${escapeHTML(c.category)} · ${escapeHTML(c.condition||"Usado")}</span><span>HASCAR SELECTION</span></div><h3>${escapeHTML(c.name)}</h3><div class="specs">${escapeHTML(c.specs)}</div><div class="price">${escapeHTML(c.price)}</div><a class="btn outline" target="_blank" rel="noopener" href="${discord()}">Consultar unidad ↗</a></div></article>`).join(""):'<p style="color:#aaa">No hay vehículos en esta categoría por el momento.</p>';
+ renderAdminList();
+}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+document.querySelectorAll("[data-filter]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-filter]").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(b.dataset.filter)}));
+document.getElementById("contactForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  window.open(DISCORD_INVITE,"_blank","noopener");
+});
+const modal=document.getElementById("adminModal");document.getElementById("adminOpen").onclick=()=>modal.classList.add("show");document.getElementById("closeAdmin").onclick=()=>modal.classList.remove("show");modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.remove("show")});
+document.getElementById("loginForm").addEventListener("submit",e=>{e.preventDefault();if(document.getElementById("adminPassword").value===ADMIN_PASSWORD){document.getElementById("loginArea").style.display="none";document.getElementById("adminArea").style.display="block";renderAdminList()}else alert("Contraseña incorrecta");});
+document.getElementById("logout").onclick=()=>{document.getElementById("adminArea").style.display="none";document.getElementById("loginArea").style.display="block";document.getElementById("adminPassword").value=""};
+document.getElementById("carForm").addEventListener("submit",e=>{e.preventDefault();const d=new FormData(e.target);cars.unshift({id:Date.now(),name:d.get("name"),category:d.get("category"),condition:d.get("condition"),specs:d.get("specs"),price:d.get("price"),image:d.get("image")});save();render();e.target.reset();alert("Vehículo agregado al catálogo de este navegador.")});
+function renderAdminList(){const el=document.getElementById("adminList");if(!el)return;el.innerHTML=cars.map(c=>`<div class="admin-row"><span>${escapeHTML(c.name)}</span><button class="delete" data-delete="${c.id}">Eliminar</button></div>`).join("");el.querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>{cars=cars.filter(c=>c.id!==Number(b.dataset.delete));save();render()})}
+document.getElementById("menu").onclick=()=>document.getElementById("nav").classList.toggle("open");document.querySelectorAll("#nav a").forEach(a=>a.onclick=()=>document.getElementById("nav").classList.remove("open"));
+document.getElementById("year").textContent=new Date().getFullYear();
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+render();
+</script>
+</body>
+</html>
